@@ -1,0 +1,16 @@
+{
+
+  "manifest_version": 2,
+  "name": "Reddit Comment Links",
+  "version": "1.0",
+
+  "description": "Lists links from Reddit comments",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.reddit.com/r/*"],
+      "js": ["redditcommentlinks.js"]
+    }
+  ]
+
+}
