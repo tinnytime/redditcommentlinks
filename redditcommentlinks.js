@@ -1,18 +1,22 @@
 links = document.querySelectorAll('.commentarea .usertext-body a')
 
-
 var listWrapper = document.createElement('div')
 listWrapper.className = 'md '
 var list = document.createElement('ol')
 listWrapper.appendChild(list)
+var unique = []
 
 for (let _link of links) {
+    // Dedupe
+    if (unique.indexOf(_link.href) != -1) continue
+    unique.push(_link.href)
+
     // Don't show user links
-    if (_link.innerText.indexOf('u/') === 0) continue
-    // Don't show subreddit links
-    if (_link.innerText.indexOf('r/') === 0) continue
-    var item = document.createElement('li')
-    var link = _link.cloneNode(true)
+    let u = /https?:\/\/.*\.reddit\.com\/(u|message)\//
+    if (u.exec(_link.href)) continue
+
+    let item = document.createElement('li')
+    let link = _link.cloneNode(true)
     link.target = '_blank'
     item.appendChild(link)
     list.appendChild(item)
