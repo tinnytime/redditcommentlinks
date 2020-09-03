@@ -7,7 +7,8 @@ listWrapper.appendChild(list)
 var unique = []
 
 for (let _link of links) {
-    href = _link.href.toLowerCase()
+    let href = _link.href.toLowerCase()
+
     // Dedupe
     if (unique.indexOf(href) != -1) continue
     unique.push(href)
@@ -19,6 +20,10 @@ for (let _link of links) {
     let item = document.createElement('li')
     let link = _link.cloneNode(true)
     link.target = '_blank'
+
+    if (link.textContent.toLowerCase() !== href)
+        link.textContent = href + ' - ' + link.textContent
+
     item.appendChild(link)
     list.appendChild(item)
 }
