@@ -16,7 +16,7 @@ for (let _link of links) {
     unique.push(href)
 
     // Don't show subreddit or user links
-    let u = /^https?:\/\/.*\.reddit\.com\/r|u\/[a-zA-Z0-9_]*$/
+    let u = /^https?:\/\/.*\.reddit\.com\/[r|u]\/[a-zA-Z0-9_]*$/
     if (u.exec(href)) continue
 
     let item = document.createElement('li')
