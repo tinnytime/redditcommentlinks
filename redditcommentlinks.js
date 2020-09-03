@@ -1,4 +1,6 @@
-links = document.querySelectorAll('.commentarea .usertext-body a')
+// Stickied posts are usually auto moderator posts
+// so ignore the links in them
+links = document.querySelectorAll('.commentarea .comment:not(.stickied) .usertext-body a')
 
 var listWrapper = document.createElement('div')
 listWrapper.className = 'md '
