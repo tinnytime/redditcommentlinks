@@ -23,9 +23,24 @@ for (let _link of links) {
     let link = _link.cloneNode(true)
     link.target = '_blank'
 
+    // Get the comment ID so we can link to the comment
+    let id = ''
+    let cur = _link.parentNode
+    while (!id) {
+        let sib = cur.previousSibling
+        if (sib && sib.tagName ==='INPUT' && sib.name === 'thing_id')
+            id = 'thing_' + sib.value
+        else
+            cur = cur.parentNode
+    }
+
     if (link.textContent.toLowerCase() !== href)
         link.textContent = href + ' - ' + link.textContent
 
+    let a = document.createElement('a')
+    a.href = '#' + id
+    a.textContent = '^ '
+    item.appendChild(a)
     item.appendChild(link)
     list.appendChild(item)
 }
